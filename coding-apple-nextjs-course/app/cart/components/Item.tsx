@@ -1,61 +1,81 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 
 interface Props {
   item: {
     id: number;
     name: string;
-    unitPrice: string;
-    totalPrice: string;
-    quantity: number;
-    orderNo: number;
-    orderedDate: string;
-    orderStatus: string;
+    unitPrice: number;
+    size: number;
   };
 }
 
 export default function Item({ item }: Props) {
+  const [stockCount, setStockCount] = useState(1);
+
+  const increaseStockCountHandler = () => {
+    if (stockCount == 99) {
+      alert('You can select less than 100');
+      return;
+    }
+
+    setStockCount((prev) => prev + 1);
+  };
+
+  const decreaseStockCountHandler = () => {
+    if (stockCount == 1) return;
+    setStockCount((prev) => prev - 1);
+  };
+
   return (
-    <div className='w-1/2 p-[0.5rem] pb-2 mb-5 border'>
-      <div className='flex h-[6rem]'>
+    <div className='w-1/2 p-[0.5rem] mt-[-0.05rem] border-t border-b border-neutral-400'>
+      <div className='flex h-[7rem] items-center'>
         <img
           src={`/items/cloth_${item.id}.jpg`}
           alt={`${item.name}`}
-          style={{ width: 'auto', height: '100px' }}
+          style={{ width: 'auto', height: '120px' }}
         />
-        <div className='grid h-4 pl-3'>
-          <h4 className='text-neutral-500 tracking-wide font-light text-sm pt-2'>
+        <div className='basis-11/12 grid h-full place-content-start p-2'>
+          <h4 className='tracking-[-0.025rem] text-sm font-medium'>
             {item.name}
           </h4>
-          <span className='font-medium text-sm tracking-tight'>
-            ₩ {item.totalPrice}
+          <span className='font-light tracking-tighter'>
+            ₩ {(item.unitPrice * stockCount).toLocaleString()}
           </span>
-          <div className='flex'>
-            <span className=''>
-              Unit price:{' '}
-              <span className='font-light tracking-tight'>
-                ₩ {item.unitPrice}
-              </span>
-            </span>
-            <span className='mx-2 font-thin before:content-["|"]' />
-            <span className=''>
-              Quantity: <span className='font-medium'>{item.quantity}</span>
-            </span>
+          <span className='mt-3'>[size: {item.size}]</span>
+          <div className='w-[6rem] flex items-center text-base mt-2 border-b-[0.5px] border-neutral-300'>
+            <input
+              className='w-12 text-left font-extralight'
+              readOnly
+              value={stockCount}
+            />
+            <button
+              className='flex justify-center items-center pb-1 w-5 h-5 ml-1 text-xl bg-neutral-300'
+              onClick={() => increaseStockCountHandler()}
+            >
+              <span className='font-thin'>+</span>
+            </button>
+            <button
+              className='flex justify-center items-center pb-1 w-5 h-5 text-xl ml-[0.1rem] bg-neutral-200'
+              onClick={() => decreaseStockCountHandler()}
+            >
+              <span className='font-thin'>-</span>
+            </button>
           </div>
         </div>
-      </div>
-      <div className='w-screen grid gap-1 mt-1'>
-        <p>
-          Order No:
-          <span className='font-extralight'>&nbsp;{item.orderNo}</span>
-        </p>
-        <p>
-          Ordered Date:
-          <span className='font-medium'>&nbsp;{item.orderedDate}</span>
-        </p>
-        <p>
-          Status:
-          <span className='font-medium'>&nbsp;{item.orderStatus}</span>
-        </p>
+        <div className='h-full'>
+          <button>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              height='25'
+              viewBox='0 96 960 960'
+              width='25'
+            >
+              <path d='m252.846 825.154-22-22L458 576 230.846 348.846l22-22L480 554l227.154-227.154 22 22L502 576l227.154 227.154-22 22L480 598 252.846 825.154Z' />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
