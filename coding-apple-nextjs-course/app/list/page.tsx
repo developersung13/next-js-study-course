@@ -19,7 +19,7 @@ export default function List() {
 
   return (
     <div className='h-screen flex flex-col mt-[1rem] text-xl'>
-      <h1 className='text-4xl mb-10 tracking-[1.25rem] font-extralight'>
+      <h1 className='text-4xl text-center mb-10 tracking-[1.25rem] font-extralight'>
         ITEMS
       </h1>
       <div className='w-screen flex justify-center flex-wrap'>
