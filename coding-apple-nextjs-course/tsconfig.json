@@ -30,7 +30,8 @@
     ".next/types/**/*.ts",
     "app/items/page.tsx",
     "app/items/page.tsx",
-    "app/items/page.tsx"
-  ],
-  "exclude": ["node_modules"]
+    "app/items/page.tsx",
+    "app/page.js",
+    "util/dbConnection.js"
+  ]
 }
