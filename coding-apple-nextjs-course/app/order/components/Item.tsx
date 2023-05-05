@@ -5,7 +5,6 @@ interface Props {
     id: number;
     name: string;
     unitPrice: number;
-    totalPrice: number;
     quantity: number;
     size: number;
     orderNo: number;
@@ -19,7 +18,7 @@ export default function Item({ item }: Props) {
     <div className='w-1/2 p-[0.5rem] pb-2 mt-5 border'>
       <div className='flex h-[7rem]'>
         <img
-          src={`/items/cloth_${item.id}.jpg`}
+          src={`/items/${item.name}.jpg`}
           alt={`${item.name}`}
           style={{ width: 'auto', height: '120px' }}
         />
@@ -28,7 +27,7 @@ export default function Item({ item }: Props) {
             {item.name}
           </h4>
           <span className='font-light tracking-tighter mt-[-0.75rem]'>
-            ₩ {item.totalPrice.toLocaleString()}
+            ₩ {(item.unitPrice * item.quantity).toLocaleString()}
           </span>
           <div className='flex mt-1 gap-2'>
             <span>

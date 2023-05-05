@@ -5,7 +5,6 @@ interface Item {
   id: number;
   name: string;
   unitPrice: number;
-  totalPrice: number;
   quantity: number;
   size: number;
   orderNo: number;
@@ -19,7 +18,6 @@ export default function Order() {
       id: 1,
       name: 'POLO KNIT_IVORY',
       unitPrice: 119000,
-      totalPrice: 238000,
       quantity: 2,
       size: 1,
       orderNo: 159348793,
@@ -30,7 +28,6 @@ export default function Order() {
       id: 2,
       name: 'POLO KNIT_BLACK',
       unitPrice: 129000,
-      totalPrice: 387000,
       quantity: 3,
       size: 3,
       orderNo: 131283821,
@@ -41,7 +38,6 @@ export default function Order() {
       id: 3,
       name: 'POLO KNIT_GRAY',
       unitPrice: 139000,
-      totalPrice: 139000,
       quantity: 1,
       size: 1,
       orderNo: 128937283,

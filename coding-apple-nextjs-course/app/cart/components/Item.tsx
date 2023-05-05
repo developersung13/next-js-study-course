@@ -32,7 +32,7 @@ export default function Item({ item }: Props) {
     <div className='w-1/2 p-[0.5rem] mt-[-0.05rem] border-t border-b border-neutral-400'>
       <div className='flex h-[7rem] items-center'>
         <img
-          src={`/items/cloth_${item.id}.jpg`}
+          src={`/items/${item.name}.jpg`}
           alt={`${item.name}`}
           style={{ width: 'auto', height: '120px' }}
         />
