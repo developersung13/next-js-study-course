@@ -1,21 +1,35 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Item from './components/Item';
+import Loading from '../loading';
 
 interface Item {
-  id: number;
+  _id: string;
   name: string;
   price: number;
 }
 
 export default function Items() {
-  const items: Item[] = [
-    { id: 1, name: 'POLO KNIT_IVORY', price: 119000 },
-    { id: 2, name: 'POLO KNIT_BLACK', price: 129000 },
-    { id: 3, name: 'POLO KNIT_GRAY', price: 139000 },
-    { id: 4, name: 'POLO KNIT_FLOWER', price: 149000 },
-    { id: 5, name: 'BOUCLÉ COLLAR KNIT_ECRU', price: 159000 },
-    { id: 6, name: 'FULL ZIP KNIT CARDIGAN_BLUE', price: 169000 },
-  ];
+  const [items, setItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const res = await fetch('/api/items');
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+        const items: Item[] = await res.json();
+        setItems(items);
+        setLoading(true);
+      } catch (err) {
+        console.error('Error fetching items:', err);
+      }
+    };
+    fetchItems();
+  }, []);
+
+  if (!loading) return <Loading />;
 
   return (
     <div className='h-screen flex flex-col mt-[1rem] text-xl'>
@@ -23,8 +37,8 @@ export default function Items() {
         ITEMS
       </h1>
       <div className='w-screen flex justify-center flex-wrap'>
-        {items.map((item: Item, idx: number) => {
-          return <Item key={idx} item={item} />;
+        {items.map((item) => {
+          return <Item key={item._id} item={item} />;
         })}
       </div>
     </div>

@@ -2,16 +2,16 @@
 
 import React, { useState } from 'react';
 
-interface Props {
+interface CartProps {
   item: {
-    id: number;
+    _id: string;
     name: string;
     unitPrice: number;
     size: number;
   };
 }
 
-export default function Item({ item }: Props) {
+export default function Item({ item }: CartProps) {
   const [stockCount, setStockCount] = useState(1);
 
   const increaseStockCountHandler = () => {

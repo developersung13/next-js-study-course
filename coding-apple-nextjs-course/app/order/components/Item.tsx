@@ -2,14 +2,14 @@ import React from 'react';
 
 interface Props {
   item: {
-    id: number;
+    _id: string;
     name: string;
     unitPrice: number;
     quantity: number;
     size: number;
     orderNo: number;
-    orderedDate: string;
     orderStatus: string;
+    orderedDate: string;
   };
 }
 
