@@ -8,6 +8,10 @@ interface Item {
   _id: string;
   name: string;
   price: number;
+  maxSize: number;
+  prodImageCnt: number;
+  prodDescription: string;
+  prodWarningDescription: string;
 }
 
 export default function Items() {
@@ -32,7 +36,7 @@ export default function Items() {
   if (!loading) return <Loading />;
 
   return (
-    <div className='h-screen flex flex-col mt-[1rem] text-xl'>
+    <div className='h-fit flex flex-col mt-[6rem] mb-20 text-xl'>
       <h1 className='text-4xl text-center mb-10 tracking-[1.25rem] font-extralight'>
         ITEMS
       </h1>

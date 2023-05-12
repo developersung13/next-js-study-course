@@ -2,16 +2,17 @@
 
 import React, { useState } from 'react';
 
-interface CartProps {
+interface Props {
   item: {
     _id: string;
     name: string;
     unitPrice: number;
     size: number;
+    productNo: string;
   };
 }
 
-export default function Item({ item }: CartProps) {
+export default function Item({ item }: Props) {
   const [stockCount, setStockCount] = useState(1);
 
   const increaseStockCountHandler = () => {
@@ -32,7 +33,7 @@ export default function Item({ item }: CartProps) {
     <div className='w-1/2 p-[0.5rem] mt-[-0.05rem] border-t border-b border-neutral-400'>
       <div className='flex h-[7rem] items-center'>
         <img
-          src={`/items/${item.name}.jpg`}
+          src={`/images/items/${item.productNo}.jpg`}
           alt={`${item.name}`}
           style={{ width: 'auto', height: '120px' }}
         />
@@ -72,7 +73,7 @@ export default function Item({ item }: CartProps) {
               viewBox='0 96 960 960'
               width='25'
             >
-              <path d='m252.846 825.154-22-22L458 576 230.846 348.846l22-22L480 554l227.154-227.154 22 22L502 576l227.154 227.154-22 22L480 598 252.846 825.154Z' />
+              <path d='M13 3v13.59l5.043-5.05 1.414 1.42L12 20.41l-7.457-7.45 1.414-1.42L11 16.59V3h2z' />
             </svg>
           </button>
         </div>

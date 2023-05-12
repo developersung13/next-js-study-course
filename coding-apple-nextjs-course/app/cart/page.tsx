@@ -9,6 +9,7 @@ interface Item {
   name: string;
   unitPrice: number;
   size: number;
+  productNo: string;
 }
 
 export default function Cart() {
@@ -33,8 +34,8 @@ export default function Cart() {
   if (!loading) return <Loading />;
 
   return (
-    <div className='grid h-screen text-xs'>
-      <h1 className='text-4xl text-center tracking-[1.25rem] font-extralight'>
+    <div className='grid h-fit mt-[6rem] mb-20 text-xs'>
+      <h1 className='text-4xl text-center mb-10 tracking-[1.25rem] font-extralight'>
         CART
       </h1>
       <div className='flex flex-col items-center flex-wrap font-normal'>

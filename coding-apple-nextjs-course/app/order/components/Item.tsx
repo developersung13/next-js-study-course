@@ -10,6 +10,7 @@ interface Props {
     orderNo: number;
     orderStatus: string;
     orderedDate: string;
+    productNo: string;
   };
 }
 
@@ -18,7 +19,7 @@ export default function Item({ item }: Props) {
     <div className='w-1/2 p-[0.5rem] pb-2 mt-5 border'>
       <div className='flex h-[7rem]'>
         <img
-          src={`/items/${item.name}.jpg`}
+          src={`/images/items/${item.productNo}.jpg`}
           alt={`${item.name}`}
           style={{ width: 'auto', height: '120px' }}
         />

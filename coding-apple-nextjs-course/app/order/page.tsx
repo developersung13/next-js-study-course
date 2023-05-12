@@ -13,6 +13,7 @@ interface Item {
   orderNo: number;
   orderStatus: string;
   orderedDate: string;
+  productNo: string;
 }
 
 export default function Order() {
@@ -37,7 +38,7 @@ export default function Order() {
   if (!loading) return <Loading />;
 
   return (
-    <div className='grid h-screen  text-xs'>
+    <div className='grid h-fit mt-[6rem] mb-20 text-xs'>
       <h1 className='text-4xl text-center tracking-[1.25rem] font-extralight'>
         ORDER
       </h1>

@@ -1,41 +1,39 @@
 import { connectDB } from '@/util/database/dbConnection';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-interface Item {
-  _id: string;
-  name: string;
-  unitPrice: number;
-  quantity: number;
-  size: number;
-  orderNo: number;
-  orderStatus: string;
-  orderedDate: string;
-}
-
-export default async function Cart(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Item[]>
+  res: NextApiResponse
 ) {
-  const db = (await connectDB).db('shop');
-  const result = await db.collection('orders').find().toArray();
-
-  switch (req.method) {
-    case 'POST':
-      break;
-    case 'GET':
-      const items: Item[] = result.map((item) => ({
-        _id: item._id.toString(),
-        name: item.name,
-        unitPrice: item.unitPrice,
-        quantity: item.quantity,
-        size: item.size,
-        orderNo: item.orderNo,
-        orderStatus: item.orderStatus,
-        orderedDate: item.orderedDate,
-      }));
-      res.status(200).json(items);
-      break;
-    default:
+  try {
+    const db = (await connectDB).db('shop');
+    const result = await db.collection('orders').find().toArray();
+    if (!result) {
+      res.status(404).json({ message: 'Items not found.' });
       return;
+    }
+
+    switch (req.method) {
+      case 'POST':
+        break;
+      case 'GET':
+        const items = result.map((item) => ({
+          _id: item._id.toString(),
+          name: item.name,
+          unitPrice: item.unitPrice,
+          quantity: item.quantity,
+          size: item.size,
+          orderNo: item.orderNo,
+          orderStatus: item.orderStatus,
+          orderedDate: item.orderedDate,
+          productNo: item.productNo.toString(),
+        }));
+        res.status(200).json(items);
+        break;
+      default:
+        return;
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Internal server error.' });
   }
 }
