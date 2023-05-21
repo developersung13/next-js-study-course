@@ -37,14 +37,14 @@ export default function Item({ item }: Props) {
           alt={`${item.name}`}
           style={{ width: 'auto', height: '120px' }}
         />
-        <div className='basis-11/12 grid h-full place-content-start p-2'>
+        <div className='grid h-full place-content-start p-2'>
           <h4 className='tracking-[-0.025rem] text-sm font-medium'>
             {item.name}
           </h4>
           <span className='font-light tracking-tighter'>
             ₩ {(item.unitPrice * stockCount).toLocaleString()}
           </span>
-          <span className='mt-3'>[size: {item.size}]</span>
+          <span className='mt-4'>[size: {item.size}]</span>
           <div className='w-[6rem] flex items-center text-base mt-2 border-b-[0.5px] border-neutral-300'>
             <input
               className='w-12 text-left font-extralight'

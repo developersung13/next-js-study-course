@@ -26,7 +26,7 @@ export default async function handler(
           orderNo: item.orderNo,
           orderStatus: item.orderStatus,
           orderedDate: item.orderedDate,
-          productNo: item.productNo.toString(),
+          productNo: item.productNo,
         }));
         res.status(200).json(items);
         break;

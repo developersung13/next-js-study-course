@@ -16,7 +16,7 @@ interface Props {
 
 export default function Item({ item }: Props) {
   return (
-    <div className='w-1/2 p-[0.5rem] pb-2 mt-5 border'>
+    <div className='w-1/2 p-[0.5rem] pb-2 mt-5 border border-neutral-400'>
       <div className='flex h-[7rem]'>
         <img
           src={`/images/items/${item.productNo}.jpg`}

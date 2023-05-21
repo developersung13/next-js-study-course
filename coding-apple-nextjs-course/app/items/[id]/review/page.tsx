@@ -3,6 +3,8 @@
 import Loading from '@/app/loading';
 import Item from './components/Item';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface DefaultProps {
   params: {
@@ -27,6 +29,7 @@ export default function Review(props: DefaultProps) {
   const {
     params: { id },
   } = props;
+  const pathname = usePathname();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -54,9 +57,12 @@ export default function Review(props: DefaultProps) {
         {reviews.map((review, idx) => {
           return <Item key={review._id} review={{ ...review, idx }} />;
         })}
-        <button className='float-right mt-7 font-bold tracking-tighter'>
+        <Link
+          href={`${pathname}/write`}
+          className='float-right mt-7 font-bold tracking-tighter'
+        >
           WRITE
-        </button>
+        </Link>
       </div>
     </div>
   );
